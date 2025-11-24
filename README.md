@@ -11,7 +11,7 @@
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![Django REST](https://img.shields.io/badge/DRF-3.15-red?style=for-the-badge)](https://www.django-rest-framework.org/)
 
-[🚀 Ver Demo](#-demonstração) • [📖 Documentação](#-como-executar) • [💡 Decisões Técnicas](#-decisões-técnicas-e-arquiteturais)
+[📖 Documentação](#-como-executar) • [💡 Decisões Técnicas](#-decisões-técnicas-e-arquiteturais)
 
 </div>
 
