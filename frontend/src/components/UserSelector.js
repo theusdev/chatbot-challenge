@@ -42,7 +42,7 @@ const styles = {
     transition: 'background-color 0.2s',
   },
   buttonActive: {
-    backgroundColor: '#007bff',
+    backgroundColor: '#0066CC',
     color: '#fff',
   },
   currentUser: {

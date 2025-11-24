@@ -33,9 +33,9 @@ export const ThemeProvider = ({ children }) => {
       // Tema claro
       light: {
         background: '#F5F7FA',
-        surface: '#FFFFFF',
-        text: '#1A1A1A',
-        textSecondary: '#666666',
+        surface: '#03417E',
+        text: '#4EACFF',
+        textSecondary: '#F0F0F0',
         border: '#E0E0E0',
         userMessage: '#0066CC',
         botMessage: '#F0F0F0',
@@ -47,7 +47,7 @@ export const ThemeProvider = ({ children }) => {
         background: '#0A1929',
         surface: '#1A2332',
         text: '#FFFFFF',
-        textSecondary: '#B0B0B0',
+        textSecondary: '#F0F0F0',
         border: '#2D3748',
         userMessage: '#0066CC',
         botMessage: '#2D3748',

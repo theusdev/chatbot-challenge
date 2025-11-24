@@ -6,22 +6,35 @@ import UserSelector from '../components/UserSelector';
 import { sendMessage } from '../services/api';
 import { useTheme } from '../ThemeContext';
 
+const TypingIndicator = () => (
+  <div style={styles.typingWrapper}>
+    <div style={styles.typingAvatar}>
+      <img 
+        src="../public/4blue-logo.png" 
+        alt="Bot" 
+        style={styles.avatarImage}
+        onError={(e) => {
+          e.target.src = 'https://www.4blue.com.br/wp-content/uploads/2023/01/logo-4blue.png';
+        }}
+      />
+    </div>
+    <div style={styles.typingContainer}>
+      <div style={styles.typingDot}></div>
+      <div style={styles.typingDot}></div>
+      <div style={styles.typingDot}></div>
+    </div>
+  </div>
+);
+
 const ChatPage = ({ currentUser, setCurrentUser }) => {
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const navigate = useNavigate();
+  const [isTyping, setIsTyping] = useState(false);
   const { currentColors, colors } = useTheme();
 
-  
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [chatHistory]);
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
@@ -59,11 +72,21 @@ const ChatPage = ({ currentUser, setCurrentUser }) => {
       }, 500);
 
      
+       setIsTyping(true);
+      
       setTimeout(() => {
-        setChatHistory(prev => [
-          ...prev.map((msg, idx) => 
+        setChatHistory(prev => 
+          prev.map((msg, idx) => 
             idx === prev.length - 1 ? { ...msg, status: 'read' } : msg
-          ),
+          )
+        );
+      }, 800);
+      
+
+      setTimeout(() => {
+        setIsTyping(false);
+        setChatHistory(prev => [
+          ...prev,
           {
             type: 'bot',
             text: response.bot_response,
@@ -73,7 +96,7 @@ const ChatPage = ({ currentUser, setCurrentUser }) => {
             }),
           },
         ]);
-      }, 1000);
+      }, 2000);
 
     } catch (error) {
       alert('Erro ao enviar mensagem. Tente novamente.');
@@ -107,18 +130,23 @@ const ChatPage = ({ currentUser, setCurrentUser }) => {
           style={{
             ...styles.historyButton,
             backgroundColor: colors.primary,
+            position: 'relative',
           }}
           onClick={() => navigate('/historico')}
           className="intro-step-3"
         >
           <FiClock size={16} />
           <span>Ver Histórico</span>
+          {chatHistory.filter(m => m.type === 'user').length > 0 && (
+            <div style={styles.badge}>
+              {chatHistory.filter(m => m.type === 'user').length}
+            </div>
+          )}
         </button>
       </div>
 
       <div style={{
         ...styles.chatContainer,
-        backgroundColor: currentColors.surface,
         border: `1px solid ${currentColors.border}`,
       }}>
         <div 
@@ -133,8 +161,8 @@ const ChatPage = ({ currentUser, setCurrentUser }) => {
         >
           {chatHistory.length === 0 ? (
             <div style={styles.emptyState}>
-              <FiSend size={48} color={currentColors.textSecondary} />
-              <p style={{...styles.emptyMessage, color: currentColors.textSecondary}}>
+              <FiSend size={48} color={'#4d4d4d'} />
+              <p style={styles.emptyMessage}>
                 Nenhuma mensagem ainda. <br />
                 Envie uma mensagem para começar!
               </p>
@@ -152,7 +180,7 @@ const ChatPage = ({ currentUser, setCurrentUser }) => {
                   {msg.type === 'bot' && (
                     <div style={styles.avatar}>
                       <img 
-                        src="/4blue-logo.png" 
+                        src="/4blue-chat.jpg" 
                         alt="Bot" 
                         style={styles.avatarImage}
                         onError={(e) => {
@@ -204,6 +232,7 @@ const ChatPage = ({ currentUser, setCurrentUser }) => {
                 </div>
               ))}
               <div ref={messagesEndRef} />
+              {isTyping && <TypingIndicator />}
             </>
           )}
         </div>
@@ -212,7 +241,6 @@ const ChatPage = ({ currentUser, setCurrentUser }) => {
           onSubmit={handleSendMessage} 
           style={{
             ...styles.form,
-            backgroundColor: currentColors.surface,
             borderTop: `1px solid ${currentColors.border}`,
           }}
           className="intro-step-1"
@@ -224,8 +252,8 @@ const ChatPage = ({ currentUser, setCurrentUser }) => {
             placeholder="Digite sua mensagem..."
             style={{
               ...styles.input,
-              backgroundColor: currentColors.background,
-              color: currentColors.text,
+              backgroundColor: '#F5F7FA',
+              color: '#1A1A1A',
               border: `1px solid ${currentColors.border}`,
             }}
             disabled={loading}
@@ -284,6 +312,7 @@ const styles = {
   },
   chatContainer: {
     borderRadius: '12px',
+    backgroundColor: '#edeae3',
     overflow: 'hidden',
     boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
   },
@@ -305,6 +334,7 @@ const styles = {
   },
   emptyMessage: {
     textAlign: 'center',
+    color: '#4d4d4d',
     lineHeight: '1.6',
     fontSize: '15px',
   },
@@ -381,6 +411,53 @@ const styles = {
     borderTop: '3px solid white',
     borderRadius: '50%',
     animation: 'spin 0.8s linear infinite',
+  },
+  typingWrapper: {
+    display: 'flex',
+    alignItems: 'flex-end',
+    gap: '8px',
+    animation: 'fadeIn 0.3s ease-in',
+  },
+  typingAvatar: {
+    width: '32px',
+    height: '32px',
+    borderRadius: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    overflow: 'hidden',
+  },
+  typingContainer: {
+    backgroundColor: '#F0F0F0',
+    borderRadius: '12px 12px 12px 0',
+    padding: '12px 16px',
+    display: 'flex',
+    gap: '4px',
+    alignItems: 'center',
+  },
+  typingDot: {
+    width: '8px',
+    height: '8px',
+    borderRadius: '50%',
+    backgroundColor: '#999',
+    animation: 'pulse 1.4s ease-in-out infinite',
+  },
+  badge: {
+    position: 'absolute',
+    top: '-8px',
+    right: '-8px',
+    backgroundColor: '#FF4444',
+    color: 'white',
+    borderRadius: '50%',
+    width: '22px',
+    height: '22px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '12px',
+    fontWeight: 'bold',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
   },
 };
 

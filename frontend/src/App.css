@@ -168,3 +168,98 @@ button,
 input {
   transition: all 0.3s ease;
 }
+
+@keyframes pulse {
+  0%, 80%, 100% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.typingDot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typingDot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+
+.introjs-tooltip {
+  max-width: 400px !important;
+  min-width: 300px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
+  background: white !important;
+}
+
+.introjs-tooltiptext {
+  padding: 20px !important;
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+}
+
+.introjs-tooltiptext h3 {
+  margin: 0 0 10px 0 !important;
+  font-size: 20px !important;
+  color: #0066CC !important;
+}
+
+.introjs-button {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  padding: 10px 20px !important;
+  font-size: 14px !important;
+  transition: all 0.3s !important;
+  border: none !important;
+  text-shadow: none !important;
+}
+
+.introjs-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.introjs-nextbutton {
+  background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%) !important;
+  color: white !important;
+}
+
+.introjs-prevbutton {
+  background: #f0f0f0 !important;
+  color: #333 !important;
+}
+
+.introjs-skipbutton {
+  color: #999 !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+}
+
+.introjs-disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+.introjs-progressbar {
+  background-color: #0066CC !important;
+}
+
+.introjs-progress {
+  background-color: #e0e0e0 !important;
+  height: 8px !important;
+  border-radius: 4px !important;
+}
+
+.introjs-helperLayer {
+  border-radius: 8px !important;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7) !important;
+}
+
+.introjs-tooltip.introjs-floating {
+  border-radius: 12px !important;
+}

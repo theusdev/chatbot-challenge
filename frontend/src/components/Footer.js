@@ -19,7 +19,7 @@ const Footer = () => {
             alt="4Blue Logo" 
             style={styles.logo}
             onError={(e) => {
-              e.target.src = 'https://www.4blue.com.br/wp-content/uploads/2023/01/logo-4blue.png';
+              e.target.src = '/4blue-logo.png';
             }}
           />
           <p style={{...styles.description, color: currentColors.textSecondary}}>
@@ -80,7 +80,7 @@ const Footer = () => {
         color: currentColors.textSecondary,
       }}>
         <p style={styles.copyrightText}>
-          © 2025 4Blue - Todos os direitos reservados | Desenvolvido para o Desafio Técnico
+          © 2025 4Blue - Todos os direitos reservados | Desenvolvido com <span style={{color: currentColors.primary}}>❤️</span> por Matheus Coutinho para o Desafio Técnico 4Blue.
         </p>
       </div>
     </footer>
@@ -105,9 +105,12 @@ const styles = {
     gap: '12px',
   },
   logo: {
-    height: '35px',
-    width: 'auto',
+    height: '37px',
+    width: '97px',
+    objectFit: 'contain',
+    objectPosition: 'center',
     marginBottom: '10px',
+    
   },
   description: {
     fontSize: '14px',
@@ -145,6 +148,7 @@ const styles = {
   copyrightText: {
     fontSize: '13px',
     margin: 0,
+    marginBottom: '20px',
   },
 };
 

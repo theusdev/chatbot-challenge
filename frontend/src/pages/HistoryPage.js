@@ -135,7 +135,7 @@ const HistoryPage = ({ currentUser, setCurrentUser }) => {
                 }}>
                   <div style={styles.messageLabel}>
                     <img 
-                      src="/4blue-logo.png" 
+                      src="/4blue-chat.jpg" 
                       alt="Bot" 
                       style={styles.botIcon}
                       onError={(e) => {
@@ -294,6 +294,7 @@ const styles = {
     width: '18px',
     height: '18px',
     objectFit: 'contain',
+    borderRadius: '50%',
   },
   messageBlockText: {
     margin: 0,

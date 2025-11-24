@@ -1,5 +1,4 @@
 import React from 'react';
-import { FiUser } from 'react-icons/fi';
 import { useTheme } from '../ThemeContext';
 
 const UserSelector = ({ currentUser, onUserChange }) => {
@@ -24,7 +23,7 @@ const UserSelector = ({ currentUser, onUserChange }) => {
           }}
           onClick={() => onUserChange('A')}
         >
-          <FiUser size={18} />
+          <span style={styles.icon}>👤</span>
           <span>Usuário A</span>
         </button>
         <button
@@ -36,7 +35,7 @@ const UserSelector = ({ currentUser, onUserChange }) => {
           }}
           onClick={() => onUserChange('B')}
         >
-          <FiUser size={18} />
+          <span style={styles.icon}>👤</span>
           <span>Usuário B</span>
         </button>
       </div>
@@ -75,6 +74,10 @@ const styles = {
     alignItems: 'center',
     gap: '8px',
     fontWeight: '500',
+  },
+  icon: {
+    fontSize: '18px',
+    lineHeight: '1',
   },
   currentUser: {
     margin: '10px 0 0 0',

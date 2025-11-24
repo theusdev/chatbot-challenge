@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTheme } from '../ThemeContext';
 import { FiMoon, FiSun } from 'react-icons/fi';
+import { FiHelpCircle } from 'react-icons/fi';
 
 const Header = () => {
   const { isDark, toggleTheme, currentColors } = useTheme();
@@ -19,7 +20,7 @@ const Header = () => {
             alt="4Blue Logo" 
             style={styles.logo}
             onError={(e) => {
-              e.target.src = 'https://www.4blue.com.br/wp-content/uploads/2023/01/logo-4blue.png';
+              e.target.src = '/4blue-logo.png';
             }}
           />
           <div style={styles.titleSection}>
@@ -30,17 +31,34 @@ const Header = () => {
           </div>
         </div>
         
-        <button 
-          onClick={toggleTheme}
-          style={{
-            ...styles.themeButton,
-            backgroundColor: currentColors.background,
-            color: currentColors.text,
-          }}
-          title={isDark ? 'Tema Claro' : 'Tema Escuro'}
-        >
-          {isDark ? <FiSun size={20} /> : <FiMoon size={20} />}
-        </button>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button 
+            onClick={() => {
+              localStorage.removeItem('hasSeenChatTour');
+              window.location.href = '/';
+            }}
+            style={{
+              ...styles.themeButton,
+              backgroundColor: currentColors.background,
+              color: currentColors.text,
+            }}
+            title="Refazer Tour"
+          >
+            <FiHelpCircle size={20} />
+          </button>
+          
+          <button 
+            onClick={toggleTheme}
+            style={{
+              ...styles.themeButton,
+              backgroundColor: currentColors.background,
+              color: currentColors.text,
+            }}
+            title={isDark ? 'Tema Claro' : 'Tema Escuro'}
+          >
+            {isDark ? <FiSun size={20} /> : <FiMoon size={20} />}
+          </button>
+        </div>
       </div>
     </header>
   );
@@ -67,8 +85,11 @@ const styles = {
     gap: '15px',
   },
   logo: {
-    height: '45px',
-    width: 'auto',
+    height: '37px',
+    width: '97px',  
+    objectFit: 'contain',
+    objectPosition: 'center',
+    marginRight: '30px',
   },
   titleSection: {
     display: 'flex',
