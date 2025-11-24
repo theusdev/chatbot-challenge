@@ -224,7 +224,7 @@ Busca histórico de mensagens do usuário especificado.
 
 ### 1️⃣ Clone o Repositório
 ```bash
-git clone https://github.com/seu-usuario/chatbot-challenge.git
+git clone https://github.com/theusdev/chatbot-challenge.git
 cd chatbot-challenge
 ```
 
