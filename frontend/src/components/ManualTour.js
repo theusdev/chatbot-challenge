@@ -16,13 +16,22 @@ const ManualTour = () => {
       const timer = setTimeout(() => {
         startTour();
         localStorage.setItem('hasSeenChatTour', 'true');
-      }, 500);
+      }, 1000);
 
       return () => clearTimeout(timer);
     }
   }, [location]);
 
   const startTour = () => {
+    const step1 = document.querySelector('.intro-step-1');
+    const step2 = document.querySelector('.intro-step-2');
+    const step3 = document.querySelector('.intro-step-3');
+
+    if (!step1 || !step2 || !step3) {
+      console.warn('Elementos do tour não encontrados. Aguarde a página carregar.');
+      return;
+    }
+
     const intro = introJs();
     
     intro.setOptions({
