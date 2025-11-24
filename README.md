@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![4Blue Logo](https://www.4blue.com.br/wp-content/uploads/2023/01/logo-4blue.png)
+![4Blue Logo](public/4blue-logo.png)
 
 **Sistema fullstack de chat inteligente com histórico personalizado**
 
