@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![4Blue Logo](public/4blue-logo.png)
+![4Blue Logo](frontend/public/4blue-logo.png)
 
 **Sistema fullstack de chat inteligente com histórico personalizado**
 
